@@ -19,7 +19,7 @@ import com.example.jpa.entity.Employee;
  *
  */
 @Repository           //singleton
-public class FindDAO {
+public class SelectDAO {
 	@Autowired
 	private EntityManager entityManager;  //vì @repository là singleton nên => entityManager là singleton
 
@@ -31,9 +31,8 @@ public class FindDAO {
 	}
 
 	@Transactional
-	public List<Employee> findDepartmentById2(int id){
-		String sql = "Select e from " + Employee.class.getName() + " e "
-                + " where e.department.deptNo= :deptNo "; // ":deptNo" tương tự "?" trên SQL
+	public List<Employee> findAllEmployee(){
+		String sql = "Select e from " + Employee.class.getName() + " e ";
 		
 		Query query = entityManager.createQuery(sql);
 		
@@ -42,7 +41,7 @@ public class FindDAO {
 	}
 	
 	@Transactional
-	public List<Employee> findAllDepartment(String deptNo){
+	public List<Employee> findEmployeeByDepNo(String deptNo){
 		// Tạo một câu lệnh HQL query object.
 		// HQL Có tham số.
 		// Tương đương với Native SQL:
@@ -64,6 +63,19 @@ public class FindDAO {
 		query.setParameter("deptNo", deptNo);
 		
 
-		return query.getResultList();
+		List<Employee> emps =  query.getResultList();
+		
+		return emps;
+	}
+	
+	@Transactional
+	public Employee findEmployeeById(int id){
+
+		Employee emp = entityManager.find(Employee.class, (long)id);
+		
+		//lazy load: phai thuc hien trong @transactional	
+		emp.getDepartment();
+		
+		return emp;
 	}
 }

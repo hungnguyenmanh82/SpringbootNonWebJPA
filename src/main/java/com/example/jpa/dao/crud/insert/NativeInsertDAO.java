@@ -33,10 +33,8 @@ public class NativeInsertDAO {
     
     //cách 2:
     // bất kỳ lệnh SQL nào cũng phải ở trong 1 transaction (nếu ko sẽ có lỗi exception)
+    @Transactional
     public void insertDepartment2(Department dep){
-    	
-    	//nếu ko dùng @transaction thì phải khai báo như sau
-    	entityManager.getTransaction().begin();
     	//Lưu ý "?" thứ tự rất quan trọng
     	Query q = entityManager.createNativeQuery("INSERT INTO department (dept_id, dept_name, dept_no, location) VALUES (?,?,?,?);")
 											    	.setParameter(1, dep.getDeptId())  //thứ tự bắt đầu từ 1
@@ -46,7 +44,6 @@ public class NativeInsertDAO {
     	
     	// @return the number of entities updated or deleted
     	int result = q.executeUpdate();
-    	
-    	entityManager.getTransaction().commit();
+
     }
 }

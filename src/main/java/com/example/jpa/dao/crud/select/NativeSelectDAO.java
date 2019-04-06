@@ -33,11 +33,8 @@ public class NativeSelectDAO {
     
     //cách 2:
     // bất kỳ lệnh SQL nào cũng phải ở trong 1 transaction (nếu ko sẽ có lỗi exception)
+    @Transactional
     public Department findDepartmentById2(int depId){
-    	
-    	//nếu ko dùng @transaction thì phải khai báo như sau
-    	entityManager.getTransaction().begin();
-    	
     	//Lưu ý "?" thứ tự rất quan trọng
     	//phai liet ke du column cua table tuong ung voi Department.class , ko can dung thu tu van ok
     	Query q = entityManager.createNativeQuery("SELECT dept_id, dept_name, dept_no, location FROM department WHERE dept_id = ?",Department.class)
@@ -45,9 +42,6 @@ public class NativeSelectDAO {
  	
     	// @return the number of entities updated or deleted
     	Department dep = (Department) q.getSingleResult();
-    	
-    	
-    	entityManager.getTransaction().commit();
     	return dep;
     }
     
