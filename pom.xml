@@ -24,9 +24,13 @@
 
 	<dependencies>
 		<!-- Springboot cho no-web application (commandline application) -->
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter</artifactId> 
+			</dependency> -->
+
+		<!-- Springboot for web application -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<!-- JPA của SpringBoot mặc định tích hợp Hibernate ở trong đó -->
