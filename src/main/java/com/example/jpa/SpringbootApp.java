@@ -18,7 +18,8 @@ import com.example.jpa.entity.Employee;
 public class SpringbootApp  {
 
 	/**
-	 * config the same web-application
+	 * pom.xml the same web-application
+	 * application.properties cần config thêm
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootApp.class, args);
