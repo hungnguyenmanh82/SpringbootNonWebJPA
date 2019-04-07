@@ -35,8 +35,8 @@ public class SpringbootApp implements CommandLineRunner {
 
 		//		testSelect4();
 		//		testSelect5();
-		//		testSelect6();
-		testSelect7();
+				testSelect6();
+//		testSelect7();
 
 	}
 
@@ -144,6 +144,7 @@ public class SpringbootApp implements CommandLineRunner {
 			System.out.println("OK: *******************************");
 			System.out.println("     empId=" + emp.getEmpId());
 			System.out.println("     empName=" + emp.getEmpName());
+			System.out.println("     DepNo=" + emp.getDepartment().getDeptNo());
 		}
 	}
 

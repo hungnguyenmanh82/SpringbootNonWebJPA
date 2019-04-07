@@ -73,7 +73,8 @@ public class SelectDAO {
 
 		Employee emp = entityManager.find(Employee.class, (long)id);
 		
-		//lazy load: phai thuc hien trong @transactional	
+		//lazy load
+		//spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true
 		emp.getDepartment();
 		
 		return emp;

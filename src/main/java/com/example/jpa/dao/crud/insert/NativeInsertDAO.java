@@ -11,6 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.jpa.entity.Department;
 
+/**
+ * SQL native sample nen tham khao: 
+ * https://github.com/hungnguyenmanh82/Javacore_TestJDBC
+ *
+ */
 @Repository           //singleton
 public class NativeInsertDAO {
     @Autowired
@@ -21,7 +26,7 @@ public class NativeInsertDAO {
     // chạy 2 lần để test exception => vi duplicate Id
     @Transactional
     public void insertDepartment1(Department dep){
-    	Query q = entityManager.createNativeQuery("INSERT INTO department (dept_id, dept_name, dept_no, location) VALUES (:id, :name, :no, :lo);");
+    	Query q = entityManager.createNativeQuery("INSERT INTO department (dept_id, dept_name, dept_no, location) VALUES (:id, :name, :no, :lo)");
     	q.setParameter("id", dep.getDeptId());
     	q.setParameter("name",dep.getDeptName());
     	q.setParameter("no", dep.getDeptNo());
@@ -36,7 +41,7 @@ public class NativeInsertDAO {
     @Transactional
     public void insertDepartment2(Department dep){
     	//Lưu ý "?" thứ tự rất quan trọng
-    	Query q = entityManager.createNativeQuery("INSERT INTO department (dept_id, dept_name, dept_no, location) VALUES (?,?,?,?);")
+    	Query q = entityManager.createNativeQuery("INSERT INTO department (dept_id, dept_name, dept_no, location) VALUES (?,?,?,?)")
 											    	.setParameter(1, dep.getDeptId())  //thứ tự bắt đầu từ 1
 											    	.setParameter(2,dep.getDeptName())
 											    	.setParameter(3, dep.getDeptNo())
