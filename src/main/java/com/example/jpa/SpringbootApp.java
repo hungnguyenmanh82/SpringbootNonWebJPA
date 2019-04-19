@@ -14,6 +14,10 @@ import com.example.jpa.dao.crud.select.SelectDAO;
 import com.example.jpa.entity.Department;
 import com.example.jpa.entity.Employee;
 
+/*
+ * Vẫn config như Springboot web. Nhưng thay đổi ở file  resources/application.properties
+ */
+
 @SpringBootApplication
 public class SpringbootApp  {
 
